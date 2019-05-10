@@ -16,16 +16,29 @@ module.exports = {
   module: { // loader를 이용해 JSX, CSS, SASS 등을 일반 자바스크립트 형식으로 변환
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            cacheDirectory: true,
+            presets: [
+              [
+                "@babel/preset-env", // ES5 문법을 변환
+                { targets: { browsers: "last 2 versions" } },
+              ],
+              "@babel/preset-react", // React 코드를 변환
+            ],
+            plugins: ["react-hot-loader/babel"],
           }
-        },
+        }
       }
     ]
+  },
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
