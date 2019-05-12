@@ -29,7 +29,10 @@ module.exports = {
               ],
               "@babel/preset-react", // React 코드를 변환
             ],
-            plugins: ["react-hot-loader/babel"],
+            plugins: [
+              "react-hot-loader/babel",
+              "@babel/plugin-proposal-object-rest-spread",
+            ],
           }
         }
       }

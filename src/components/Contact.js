@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import update from 'react-addons-update';
 import ContactInfo from './ContactInfo';
 import ContactDetails from './ContactDetails';
 

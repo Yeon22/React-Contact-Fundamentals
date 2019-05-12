@@ -11,10 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "react": "^16.8.6",
+    "react-addons-update": "^15.6.2",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "@hot-loader/react-dom": "^16.8.6",
