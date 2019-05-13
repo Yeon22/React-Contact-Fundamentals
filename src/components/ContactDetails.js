@@ -12,6 +12,7 @@ export default class ContactDetails extends Component {
     this.handleToggle = this.handleToggle.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleToggle() {
@@ -39,6 +40,12 @@ export default class ContactDetails extends Component {
     this.props.onEdit(this.state.name, this.state.phone);
   };
 
+  handleKeyPress(e) {
+    if (e.charCode === 13) { // 13은 enter
+      this.handleToggle();
+    }
+  };
+
   render() {
     const details = (
       <div>
@@ -51,18 +58,23 @@ export default class ContactDetails extends Component {
     );
     const edit = (
       <div>
-        <input
-          type="text"
-          name="name"
-          placeholder="name"
-          value={this.state.name}
-          onChange={this.handleChange}/>
-        <input
-          type="text"
-          name="phone"
-          placeholder="phone"
-          value={this.state.phone}
-          onChange={this.handleChange}/>
+        <p>
+          <input
+            type="text"
+            name="name"
+            placeholder="name"
+            value={this.state.name}
+            onChange={this.handleChange}/>
+        </p>
+        <p>
+          <input
+            type="text"
+            name="phone"
+            placeholder="phone"
+            value={this.state.phone}
+            onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}/>
+        </p>
       </div>
     );
     const view = this.state.isEdit ? edit : details;

@@ -4,30 +4,32 @@ import ContactInfo from './ContactInfo';
 import ContactDetails from './ContactDetails';
 import ContactCreate from './ContactCreate';
 
+const sampleContactData = JSON.stringify([
+  {
+    name: 'Abet',
+    phone: '010-0000-0001',
+  },
+  {
+    name: 'Betty',
+    phone: '010-0000-0002',
+  },
+  {
+    name: 'Charlie',
+    phone: '010-0000-0003',
+  },
+  {
+    name: 'David',
+    phone: '010-0000-0004',
+  }
+]);
+
 class Contact extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedKey: -1,
       keyword: '',
-      contactData: [
-        {
-          name: 'Abet',
-          phone: '010-0000-0001',
-        },
-        {
-          name: 'Betty',
-          phone: '010-0000-0002',
-        },
-        {
-          name: 'Charlie',
-          phone: '010-0000-0003',
-        },
-        {
-          name: 'David',
-          phone: '010-0000-0004',
-        }
-      ]
+      contactData: JSON.parse(localStorage.contactData || sampleContactData),
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -36,6 +38,13 @@ class Contact extends Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const currentContactData = JSON.stringify(this.state.contactData);
+    if (JSON.stringify(prevState.contactData) != currentContactData) {
+      localStorage.contactData = currentContactData;
+    }
+  };
 
   handleChange(e) {
     this.setState({keyword: e.target.value});
