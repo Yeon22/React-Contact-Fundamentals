@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Contact from './Contact';
 import {hot} from 'react-hot-loader/root';
+import '../styles/app.css';
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +13,9 @@ class App extends Component {
 
   render() {
     return (
-      <Contact/>
+      <div className="base_container">
+        <Contact/>
+      </div>
     );
   }
 };

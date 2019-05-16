@@ -42,24 +42,22 @@ export default class ContactCreate extends Component {
 
   render() {
     return (
-      <div>
+      <div className="flex_center">
         <h2>Create Contact</h2>
-        <p>
-          <input
-              type="text"
-              name="name"
-              placeholder="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-              ref={(ref) => {this.nameInput = ref}}/>
-          <input
-              type="text"
-              name="phone"
-              placeholder="phone"
-              value={this.state.phone}
-              onChange={this.handleChange}
-              onKeyPress={this.handleKeyPress}/>
-        </p>
+        <input
+            type="text"
+            name="name"
+            placeholder="name"
+            value={this.state.name}
+            onChange={this.handleChange}
+            ref={(ref) => {this.nameInput = ref}}/>
+        <input
+            type="text"
+            name="phone"
+            placeholder="phone"
+            value={this.state.phone}
+            onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}/>
         <button onClick={this.handleClick}>Create</button>
       </div>
     );

@@ -101,14 +101,14 @@ class Contact extends Component {
     };
 
     return (
-      <div>
+      <div className="flex_center">
         <h1>Contacts</h1>
         <input
             name="keyword"
             placeholder="Search"
             value={this.state.keyword}
             onChange={this.handleChange}/>
-        <div>
+        <div className="flex_center">
           {mapToComponents(this.state.contactData)}
           <ContactDetails
               isSelected={this.state.selectedKey != -1}
