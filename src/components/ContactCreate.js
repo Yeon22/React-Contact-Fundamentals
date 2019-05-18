@@ -73,9 +73,13 @@ export default class ContactCreate extends Component {
             margin="normal"/>
         </div>
         <div className="margin-top">
-          <Fab color="primary" aria-label="Add" variant="extended">
-            <AddIcon onClick={this.handleClick}></AddIcon>
-            Create
+          <Fab
+            color="primary"
+            aria-label="Add"
+            variant="extended"
+            onClick={this.handleClick}>
+              <AddIcon/>
+              Create
           </Fab>
         </div>
       </div>

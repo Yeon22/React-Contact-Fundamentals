@@ -95,7 +95,7 @@ export default class ContactDetails extends Component {
             name="phone"
             value={this.state.phone}
             onChange={this.handleChange}
-            onKeyDown={this.handleKeyPress}
+            onKeyPress={this.handleKeyPress}
             margin="normal"
             variant="outlined"/>
         </div>
