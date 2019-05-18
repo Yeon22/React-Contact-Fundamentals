@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
+import TextFiled from '@material-ui/core/TextField';
+import Fab from '@material-ui/core/Fab';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export default class ContactDetails extends Component {
   constructor(props) {
@@ -16,17 +21,20 @@ export default class ContactDetails extends Component {
   }
 
   handleToggle() {
-    if (!this.state.isEdit) {
+    const isEdit = this.state.isEdit;
+    if (!isEdit) {
       this.setState({
         name: this.props.contact.name,
         phone: this.props.contact.phone,
       });
+    } else if(isEdit && (!this.state.name && !this.state.phone)) {
+      alert('Click name or Crate Contact');
     } else {
       this.handleEdit();
     }
 
     this.setState({
-      isEdit: !this.state.isEdit
+      isEdit: !isEdit,
     });
   };
 
@@ -48,47 +56,74 @@ export default class ContactDetails extends Component {
 
   render() {
     const details = (
-      <div>
-        <p>{this.props.contact.name}</p>
-        <p>{this.props.contact.phone}</p>
+      <div className="margin-bottom">
+        <div>
+          <Typography component="h2" variant="h5">
+            {this.props.contact.name}
+          </Typography>
+        </div>
+        <div>
+          <Typography component="h2" variant="h5">
+            {this.props.contact.phone}
+          </Typography>
+        </div>
       </div>
     );
     const blank = (
-      <div>Blank</div>
+      <div>
+        <Typography component="h2" variant="h5" gutterBottom>
+          Blank
+        </Typography>
+      </div>
     );
     const edit = (
       <div>
-        <p>
-          <input
-            type="text"
+        <div>
+          <TextFiled
+            id="outlined-name"
+            label="Name"
             name="name"
-            placeholder="name"
             value={this.state.name}
-            onChange={this.handleChange}/>
-        </p>
-        <p>
-          <input
-            type="text"
+            onChange={this.handleChange}
+            margin="normal"
+            variant="outlined"/>
+        </div>
+        <div className="margin-bottom">
+          <TextFiled
+            id="outlined-phone"
+            label="Phone"
             name="phone"
-            placeholder="phone"
             value={this.state.phone}
             onChange={this.handleChange}
-            onKeyPress={this.handleKeyPress}/>
-        </p>
+            onKeyDown={this.handleKeyPress}
+            margin="normal"
+            variant="outlined"/>
+        </div>
       </div>
     );
     const view = this.state.isEdit ? edit : details;
 
     return (
-      <div>
-        <h2>Details</h2>
+      <div className="margin-bottom">
+        <Typography component="h2" variant="display2" gutterBottom>Details</Typography>
         {this.props.isSelected ? view : blank}
-        <p>
-          <button onClick={this.handleToggle}>
-              {this.state.isEdit ? 'OK' : 'Edit'}
-          </button>
-          <button onClick={this.props.onRemove}>Remove</button>
-        </p>
+        <div>
+          <span className="margin-right">
+            <Fab
+              variant="extended"
+              onClick={this.handleToggle}>
+                <EditIcon/>
+                {this.state.isEdit ? 'OK' : 'Edit'}
+            </Fab>
+          </span>
+          <Fab
+            variant="extended"
+            color="secondary"
+            onClick={this.props.onRemove}>
+              <DeleteIcon/>
+              Remove
+          </Fab>
+        </div>
       </div>
     );
   }

@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import update from 'react-addons-update';
+
 import ContactInfo from './ContactInfo';
 import ContactDetails from './ContactDetails';
 import ContactCreate from './ContactCreate';
+
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import List from '@material-ui/core/List';
 
 const sampleContactData = JSON.stringify([
   {
@@ -101,15 +106,20 @@ class Contact extends Component {
     };
 
     return (
-      <div className="flex_center">
-        <h1>Contacts</h1>
-        <input
-            name="keyword"
-            placeholder="Search"
-            value={this.state.keyword}
-            onChange={this.handleChange}/>
-        <div className="flex_center">
-          {mapToComponents(this.state.contactData)}
+      <div>
+        <Typography component="h2" variant="display2">Contacts</Typography>
+        <TextField
+          id="outlined-search"
+          label="Search"
+          type="search"
+          margin="normal"
+          variant="outlined"
+          value={this.state.keyword}
+          onChange={this.handleChange}/>
+        <div>
+          <List>
+            {mapToComponents(this.state.contactData)}
+          </List>
           <ContactDetails
               isSelected={this.state.selectedKey != -1}
               contact={this.state.contactData[this.state.selectedKey]}
